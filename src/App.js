@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Numbers from "./components/Numbers/Numbers";
 
 function App() {
+  const [numbers, setNumbers] = useState([1, 2, 3, 4]);
+
+  const increment = () => {
+    if (numbers[numbers.length - 1] < 20) {
+      setNumbers(numbers.map((number) => number + 1));
+    }
+  };
+
+  const decrement = () => {
+    if (numbers[0] > 0) {
+      setNumbers(numbers.map((number) => number - 1));
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Numbers numbers={numbers} increment={increment} decrement={decrement} />
   );
 }
 
